@@ -15,17 +15,17 @@ const startAction = (options) => {
     }
 
     if (options.input) {
-        const ts = new Transform({
-            transform(chunk, encoding, callback) {
-                this.push(CaesarCipher(chunk.toString(), options.shift, options.action));
-            }
-        });
-
         fs.stat(options.input, function (err) {
             if (!err) {
                 if (options.output) {
                     fs.stat(options.output, function (err) {
                         if (!err) {
+                            const ts = new Transform({
+                                transform(chunk, encoding, callback) {
+                                    this.push(CaesarCipher(chunk.toString(), options.shift, options.action));
+                                }
+                            });
+
                             pipeline(
                                 fs.createReadStream(options.input),
                                 ts,
