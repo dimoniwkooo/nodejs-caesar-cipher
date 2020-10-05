@@ -9,7 +9,7 @@ const startAction = (options) => {
         process.exit(1);
     }
 
-    if (!((options.action === 'encode') || (opions.action === 'decode'))) {
+    if (!((options.action === 'encode') || (options.action === 'decode'))) {
         console.error('Action must be "encode"/"decode"');
         process.exit(1);
     }
